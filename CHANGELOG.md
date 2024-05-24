@@ -1,3 +1,9 @@
+## 6.0.4 2024-05-24 <dave at tiredofit dot ca>
+
+   ### Changed
+      - Optimize 6.0.3
+
+
 ## 6.0.3 2024-05-24 <stephdl@github>
 
    ### Changed
