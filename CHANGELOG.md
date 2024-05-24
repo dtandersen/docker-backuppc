@@ -1,3 +1,10 @@
+## 6.0.3 2024-05-24 <stephdl@github>
+
+   ### Changed
+      - Alpine 3.19 base
+      - Introduce patch from BackupPC upstream to solve Data:Dumper incompatibility with smbclient
+
+
 ## 6.0.2 2023-03-06 <dave at tiredofit dot ca>
 
    ### Changed
