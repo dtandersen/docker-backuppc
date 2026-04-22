@@ -7,10 +7,38 @@ on:
         description: 'Manual Build'
         required: false
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
-  build:
-    uses: tiredofit/github_actions/.github/workflows/default_amd64.yml@main
-    #uses: tiredofit/github_actions/.github/workflows/default_amd64.yml@main
-    #uses: tiredofit/github_actions/.github/workflows/default_amd64_armv7_arm64.yml@main
-    #uses: tiredofit/github_actions/.github/workflows/default_amd64_arm64.yml@main
-    secrets: inherit
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write # Required to push to GHCR
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
