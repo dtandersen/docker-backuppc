@@ -205,3 +205,4 @@ MIT. See [LICENSE](LICENSE) for more details.
 
 - http://backuppc.sourceforge.net/
 - https://backuppc.github.io/backuppc/
+- https://github.com/backuppc/backuppc/wiki/Smb-as-an-Xfer-method-adjustments
