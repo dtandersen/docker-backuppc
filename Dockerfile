@@ -120,3 +120,4 @@ RUN source /assets/functions/00-container && \
            /usr/src/*
 
 COPY install/ /
+COPY smbclient-wrapper.sh /usr/local/bin
